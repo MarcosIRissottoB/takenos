@@ -1,4 +1,4 @@
-# TAKENOS: APIT WITH NESTJS
+# TAKENOS: API WITH NESTJS
 
 ## Description
 

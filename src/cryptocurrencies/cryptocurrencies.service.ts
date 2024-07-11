@@ -4,6 +4,7 @@ import { Cryptocurrency } from './cryptocurrency.entity';
 import { GetCryptocurrenciesResponseDto } from './dto/getCryptocurrenciesResponse.dto';
 import { GetCryptocurrencyResponseDto } from './dto/getCryptocurrencyResponse.dto';
 import { CryptocurrencyResponseMock } from './mocks/cryptocurrencyResponseMock.service';
+import { ErrorManager } from 'src/utils/error.manager';
 
 @Injectable()
 export class CryptocurrenciesService {
@@ -41,17 +42,19 @@ export class CryptocurrenciesService {
   async getTopCryptocurrencies(): Promise<GetCryptocurrenciesResponseDto> {
     try {
       const fetchCryptocurrenciesData = await this.fetchCryptocurrencies();
+      if (fetchCryptocurrenciesData.length < 5) {
+        throw new ErrorManager({
+          type: 'INTERNAL_SERVER_ERROR',
+          message: 'Internal server error',
+        });
+      }
       return {
         status: 'Success',
         error: null,
         data: fetchCryptocurrenciesData.slice(0, 5),
       };
     } catch (error) {
-      return {
-        status: 'Error',
-        error,
-        data: null,
-      };
+      throw ErrorManager.createSignatureError(error.message);
     }
   }
 
@@ -65,13 +68,10 @@ export class CryptocurrenciesService {
           cryptocurrency.symbol === symbol.toUpperCase(),
       )[0];
       if (!responseFiltered) {
-        return {
-          status: 'Error',
-          error: {
-            errorMessage: 'Symbol not found',
-          },
-          data: null,
-        };
+        throw new ErrorManager({
+          type: 'BAD_REQUEST',
+          message: 'Symbol not found',
+        });
       }
       return {
         status: 'Success',
@@ -79,11 +79,7 @@ export class CryptocurrenciesService {
         data: responseFiltered,
       };
     } catch (error) {
-      return {
-        status: 'Error',
-        error,
-        data: null,
-      };
+      throw ErrorManager.createSignatureError(error.message);
     }
   }
 }
