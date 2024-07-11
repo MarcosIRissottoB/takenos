@@ -6,7 +6,7 @@ import configuration from './config/configuration';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.develop.env',
+      envFilePath: `.env.${process.env.NODE_ENV}`,
       isGlobal: true,
       load: [configuration],
     }),
