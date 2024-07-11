@@ -2,7 +2,7 @@
 
 ## Description
 
-API NEST to consult about cryptocurrencies.
+API with NESTJS to consult about cryptocurrencies.
 
 ## Requirements
 Node v18.17.0 or more.
@@ -25,6 +25,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Documentation
+Visit /docs
+
 
 ## Test
 

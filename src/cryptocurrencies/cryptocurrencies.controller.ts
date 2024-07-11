@@ -1,9 +1,10 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { CryptocurrenciesService } from './cryptocurrencies.service';
 import { GetCryptocurrenciesResponseDto } from './dto/getCryptocurrenciesResponse.dto';
-import { GetCryptocurrencyDto } from './dto/getCryptocurrencyRequest.dto';
 import { GetCryptocurrencyResponseDto } from './dto/getCryptocurrencyResponse.dto';
 
+@ApiTags('Cryptocurrencies')
 @Controller('cryptocurrencies')
 export class CryptocurrenciesController {
   constructor(
@@ -14,10 +15,10 @@ export class CryptocurrenciesController {
     return this.cryptocurrenciesService.getTopCryptocurrencies();
   }
 
-  @Get('/:symbol')
+  @Get(':id')
   getCryptocurrency(
-    @Param() { symbol }: GetCryptocurrencyDto,
+    @Param('id') id: string,
   ): Promise<GetCryptocurrencyResponseDto> {
-    return this.cryptocurrenciesService.getCryptocurrency(symbol);
+    return this.cryptocurrenciesService.getCryptocurrency(id);
   }
 }
