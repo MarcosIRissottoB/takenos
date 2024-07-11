@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Cryptocurrency } from './cryptocurrency.entity';
 import { GetCryptocurrenciesResponseDto } from './dto/getCryptocurrenciesResponse.dto';
 import { GetCryptocurrencyResponseDto } from './dto/getCryptocurrencyResponse.dto';
@@ -8,10 +9,15 @@ import { CryptocurrencyResponseMock } from './mocks/cryptocurrencyResponseMock.s
 export class CryptocurrenciesService {
   constructor(
     private readonly cryptocurrencyResponseMock: CryptocurrencyResponseMock,
+    private readonly configService: ConfigService,
   ) {}
   private async fetchCryptocurrencies(): Promise<Cryptocurrency[]> {
-    // const COINMARKETCAP_BASE_URL = process.env.COINMARKETCAP_BASE_URL;
-    // const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
+    // const COINMARKETCAP_BASE_URL = this.configService.get<string>(
+    //   'COINMARKETCAP_BASE_URL',
+    // );
+    // const COINMARKETCAP_API_KEY = this.configService.get<string>(
+    //   'COINMARKETCAP_API_KEY',
+    // );
     try {
       // const response = await fetch(COINMARKETCAP_BASE_URL, {
       //   method: 'GET',
@@ -20,7 +26,6 @@ export class CryptocurrenciesService {
       //   },
       // });
       // const responseJson = await response.json();
-      // console.error('responseJson', responseJson);
       // return responseJson.data;
 
       // Mocked response for testing purposes
