@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { HttpCustomService } from 'src/providers/http/http.service';
 import { Cryptocurrency } from './cryptocurrency.entity';
 import { GetCryptocurrenciesResponseDto } from './dto/getCryptocurrenciesResponse.dto';
 import { GetCryptocurrencyResponseDto } from './dto/getCryptocurrencyResponse.dto';
@@ -11,25 +12,28 @@ export class CryptocurrenciesService {
   constructor(
     private readonly cryptocurrencyResponseMock: CryptocurrencyResponseMock,
     private readonly configService: ConfigService,
+    private readonly httpCustomService: HttpCustomService,
   ) {}
   private async fetchCryptocurrencies(): Promise<Cryptocurrency[]> {
-    // const COINMARKETCAP_BASE_URL = this.configService.get<string>(
-    //   'COINMARKETCAP_BASE_URL',
-    // );
-    // const COINMARKETCAP_API_KEY = this.configService.get<string>(
-    //   'COINMARKETCAP_API_KEY',
-    // );
     try {
-      // const response = await fetch(COINMARKETCAP_BASE_URL, {
-      //   method: 'GET',
+      // const COINMARKETCAP_BASE_URL = this.configService.get<string>(
+      //   'COINMARKETCAP_BASE_URL',
+      // );
+      // const COINMARKETCAP_API_KEY = this.configService.get<string>(
+      //   'COINMARKETCAP_API_KEY',
+      // );
+      // const config = {
       //   headers: {
       //     'X-CMC_PRO_API_KEY': COINMARKETCAP_API_KEY,
       //   },
-      // });
-      // const responseJson = await response.json();
-      // return responseJson.data;
+      // };
+      // const response = await this.httpCustomService.apiFindAll(
+      //   COINMARKETCAP_BASE_URL,
+      //   config,
+      // );
+      // return response;
 
-      // Mocked response for testing purposes
+      // // Mocked response for testing purposes
       const response =
         await this.cryptocurrencyResponseMock.fetchCryptocurrenciesMock();
       return response;
@@ -41,8 +45,8 @@ export class CryptocurrenciesService {
 
   async getTopCryptocurrencies(): Promise<GetCryptocurrenciesResponseDto> {
     try {
-      const fetchCryptocurrenciesData = await this.fetchCryptocurrencies();
-      if (fetchCryptocurrenciesData.length < 5) {
+      const reponse = await this.fetchCryptocurrencies();
+      if (reponse.length < 5) {
         throw new ErrorManager({
           type: 'INTERNAL_SERVER_ERROR',
           message: 'Internal server error',
@@ -51,7 +55,7 @@ export class CryptocurrenciesService {
       return {
         status: 'Success',
         error: null,
-        data: fetchCryptocurrenciesData.slice(0, 5),
+        data: reponse.slice(0, 5),
       };
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
@@ -62,12 +66,12 @@ export class CryptocurrenciesService {
     symbol: string,
   ): Promise<GetCryptocurrencyResponseDto> {
     try {
-      const fetchCryptocurrenciesData = await this.fetchCryptocurrencies();
-      const responseFiltered = fetchCryptocurrenciesData.filter(
+      const reponse = await this.fetchCryptocurrencies();
+      const dataFiltered = reponse.filter(
         (cryptocurrency: Cryptocurrency) =>
           cryptocurrency.symbol === symbol.toUpperCase(),
       )[0];
-      if (!responseFiltered) {
+      if (!dataFiltered) {
         throw new ErrorManager({
           type: 'BAD_REQUEST',
           message: 'Symbol not found',
@@ -76,7 +80,7 @@ export class CryptocurrenciesService {
       return {
         status: 'Success',
         error: null,
-        data: responseFiltered,
+        data: dataFiltered,
       };
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
