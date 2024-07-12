@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Cryptocurrency } from '../cryptocurrency.entity';
-// import { CryptocurrenciesResponseDto } from './dto/cryptocurrenciesResponse.dto';
-// import { CryptocurrencyResponseDto } from './dto/cryptocurrencyResponse.dto';
+import { CoinMarketCapCryptoCurrencyInfo } from '../interfaces/coinMarketCapCryptoCurrencyInfo.interface';
 
 @Injectable()
 export class CryptocurrencyResponseMock {
@@ -198,7 +196,9 @@ export class CryptocurrencyResponseMock {
       },
     },
   ];
-  async fetchCryptocurrenciesMock(): Promise<Cryptocurrency[]> {
+  async fetchCryptocurrenciesMock(): Promise<
+    CoinMarketCapCryptoCurrencyInfo[]
+  > {
     return this.coinMarketCapResponseMock;
   }
 }

@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
-import { CryptocurrenciesService } from './cryptocurrencies.service';
+import { ApiTags } from '@nestjs/swagger';
+import { CryptocurrenciesService } from './services/cryptocurrencies.service';
 import { GetCryptocurrenciesResponseDto } from './dto/getCryptocurrenciesResponse.dto';
 import { GetCryptocurrencyResponseDto } from './dto/getCryptocurrencyResponse.dto';
 

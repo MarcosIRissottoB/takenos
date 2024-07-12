@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { Cryptocurrency } from '../cryptocurrency.entity';
+import { CryptoCurrency } from '../interfaces/cryptoCurrency.interface';
 
 export class GetCryptocurrencyResponseDto {
   @Expose()
@@ -9,5 +9,5 @@ export class GetCryptocurrencyResponseDto {
   error: object | null;
 
   @Expose()
-  data: Cryptocurrency;
+  data: CryptoCurrency | null;
 }
