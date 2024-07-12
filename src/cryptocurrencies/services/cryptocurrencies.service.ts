@@ -32,11 +32,11 @@ export class CryptocurrenciesService {
       //     'X-CMC_PRO_API_KEY': COINMARKETCAP_API_KEY,
       //   },
       // };
-      // const response = await this.httpCustomService.apiFindAll(
+      // const { data } = await this.httpCustomService.apiFindAll(
       //   COINMARKETCAP_BASE_URL,
       //   config,
       // );
-      // return response;
+      // return data;
 
       // // Mocked response for testing purposes
       const response =
