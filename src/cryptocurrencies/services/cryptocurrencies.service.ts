@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { HttpCustomService } from 'src/providers/http/http.service';
+import { HttpCustomService } from '../../providers/http/http.service';
 import { GetCryptocurrenciesResponseDto } from '../dto/getCryptocurrenciesResponse.dto';
 import { GetCryptocurrencyResponseDto } from '../dto/getCryptocurrencyResponse.dto';
 // import { CryptocurrencyResponseMock } from '../mocks/cryptocurrencyResponseMock.service';
-import { ErrorManager } from 'src/utils/error.manager';
+import { ErrorManager } from '../../utils/error.manager';
 import { CoinMarketCapCryptoCurrencyInfo } from '../interfaces/coinMarketCapCryptoCurrencyInfo.interface';
 import { ExchangesService } from './exchanges.service';
 import { CryptoCurrency } from '../interfaces/CryptoCurrency.interface';

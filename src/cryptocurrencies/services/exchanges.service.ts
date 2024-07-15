@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 // import { CryptoYaTiendaCryptoUSDTPriceInfoResponseMock } from '../mocks/exchangeResponseMock.service';
 import { ConfigService } from '@nestjs/config';
 import { CryptoYaCryptoCurrencyPrice } from '../interfaces/cryptoYaCryptoCurrencyPriceInfo.interface';
-import { HttpCustomService } from 'src/providers/http/http.service';
+import { HttpCustomService } from '../../providers/http/http.service';
 
 @Injectable()
 export class ExchangesService {

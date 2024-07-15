@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CloudinaryService } from './cloudinary.service';
-import { ErrorManager } from 'src/utils/error.manager';
+import { ErrorManager } from '../../utils/error.manager';
 import { Cloudinary } from '../interfaces/cloudinary.interface';
 
 @Injectable()
