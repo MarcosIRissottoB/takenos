@@ -43,8 +43,10 @@ export class CryptocurrenciesService {
       //   await this.cryptocurrencyResponseMock.fetchCryptocurrenciesMock();
       // return response;
     } catch (error) {
-      console.error('Error fetching cryptocurrencies', error);
-      throw error;
+      throw new ErrorManager({
+        type: 'INTERNAL_SERVER_ERROR',
+        message: 'Error fetching cryptocurrencies',
+      });
     }
   }
 
