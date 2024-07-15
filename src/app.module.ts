@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CryptocurrenciesModule } from './cryptocurrencies/cryptocurrencies.module';
 import { UploadfileModule } from './uploadfile/uploadfile.module';
 import configuration from './config/configuration';
+import { HttpCustomService } from './providers/http/http.service';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import configuration from './config/configuration';
     UploadfileModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [HttpCustomService],
 })
 export class AppModule {}

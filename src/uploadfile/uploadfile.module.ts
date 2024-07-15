@@ -7,6 +7,6 @@ import { CloudinaryProvider } from './providers/cloudinary.provider';
 @Module({
   providers: [UploadfileService, CloudinaryService, CloudinaryProvider],
   controllers: [UploadfileController],
-  exports: [CloudinaryProvider, CloudinaryService],
+  exports: [CloudinaryProvider, CloudinaryService, UploadfileService],
 })
 export class UploadfileModule {}
