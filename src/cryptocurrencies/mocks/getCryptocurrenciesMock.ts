@@ -1,6 +1,11 @@
+export const getTopCryptocurrenciesErrorMock = {
+  statusCode: 500,
+  message: 'INTERNAL_SERVER_ERROR :: Error fetching cryptocurrencies',
+};
+
 export const getTopCryptocurrenciesMock = {
-  status: 'Success',
-  error: null,
+  statusCode: 200,
+  message: 'Success',
   data: [
     {
       id: 1,

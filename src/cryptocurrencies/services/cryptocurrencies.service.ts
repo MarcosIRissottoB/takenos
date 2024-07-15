@@ -115,8 +115,8 @@ export class CryptocurrenciesService {
       }
       const data = await this.integrateCrytoCurrenciesAndExhangeData(reponse);
       return {
-        status: 'Success',
-        error: null,
+        statusCode: 200,
+        message: 'Success',
         data: data,
       };
     } catch (error) {
@@ -143,8 +143,8 @@ export class CryptocurrenciesService {
       const cryptoCurrencyWithExchangeData =
         await this.fetchExchangeData(cryptoCurrency);
       return {
-        status: 'Success',
-        error: null,
+        statusCode: 200,
+        message: 'Success',
         data: cryptoCurrencyWithExchangeData,
       };
     } catch (error) {

@@ -3,11 +3,11 @@ import { Cloudinary } from '../interfaces/cloudinary.interface';
 
 export class uploadFileResponseDto {
   @Expose()
-  status: string;
+  statusCode: number;
 
   @Expose()
-  error: object | null;
+  message: string;
 
   @Expose()
-  data: Cloudinary | null;
+  data?: Cloudinary | null;
 }

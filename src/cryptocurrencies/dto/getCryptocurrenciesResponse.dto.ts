@@ -3,11 +3,11 @@ import { CryptoCurrency } from '../interfaces/CryptoCurrency.interface';
 
 export class GetCryptocurrenciesResponseDto {
   @Expose()
-  status: string;
+  statusCode: number;
 
   @Expose()
-  error: object | null;
+  message: string;
 
   @Expose()
-  data: CryptoCurrency[] | null;
+  data?: CryptoCurrency[] | null;
 }

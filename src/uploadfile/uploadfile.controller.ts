@@ -40,11 +40,6 @@ export class UploadfileController {
     )
     file: Express.Multer.File,
   ): Promise<uploadFileResponseDto> {
-    const response = await this.uploadfileService.uploadImageToCloudinary(file);
-    return {
-      status: 'Success',
-      error: null,
-      data: response,
-    };
+    return await this.uploadfileService.uploadImageToCloudinary(file);
   }
 }
