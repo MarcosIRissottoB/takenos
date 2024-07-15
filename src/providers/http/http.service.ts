@@ -10,7 +10,6 @@ export class HttpCustomService {
   public async apiFindAll(url, config?: AxiosRequestConfig) {
     try {
       const { data } = await firstValueFrom(this.httpService.get(url, config));
-      console.log('apiFindAll', data);
       return data;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);

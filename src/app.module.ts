@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CryptocurrenciesModule } from './cryptocurrencies/cryptocurrencies.module';
+import { UploadfileModule } from './uploadfile/uploadfile.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -11,6 +12,7 @@ import configuration from './config/configuration';
       load: [configuration],
     }),
     CryptocurrenciesModule,
+    UploadfileModule,
   ],
   controllers: [],
   providers: [],
